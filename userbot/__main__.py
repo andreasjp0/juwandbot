@@ -26,11 +26,12 @@ except PhoneNumberInvalidError:
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
-LOGS.info("You are running NangisBot [v1.1]")
+LOGS.info("You are running NangisBot [v1.2]")
 
 LOGS.info(
-    "Congratulations, your userbot is now running !! Test it by typing .alive / .on in any chat."
-    "If you need assistance, head to https://t.me/userbotindo")
+    "T E L E G R A M  U S E R B O T  R U N N I N G ! ! !"
+    "T E L E G R A M  U S E R B O T  R U N N I N G ! ! !"
+	"T E L E G R A M  U S E R B O T  R U N N I N G ! ! !")
 
 if len(argv) not in (1, 3, 4):
     bot.disconnect()
