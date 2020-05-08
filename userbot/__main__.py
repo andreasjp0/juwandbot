@@ -26,7 +26,7 @@ except PhoneNumberInvalidError:
 for module_name in ALL_MODULES:
     imported_module = import_module("userbot.modules." + module_name)
 
-LOGS.info("You are running NangisBot [v1.2]")
+LOGS.info("You are running NangisBot [v1.3]")
 
 LOGS.info(
     "T E L E G R A M  U S E R B O T  R U N N I N G ! ! !"
