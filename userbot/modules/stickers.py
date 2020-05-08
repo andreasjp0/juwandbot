@@ -19,11 +19,20 @@ from telethon.tl.types import InputStickerSetID
 from telethon.tl.types import DocumentAttributeSticker
 
 KANGING_STR = [
-    "؜؜",
+    "Using Witchery to kang this sticker...",
+    "Plagiarising hehe...",
+    "Inviting this sticker over to my pack...",
+    "Kanging this sticker...",
+    "Hey that's a nice sticker!\nMind if I kang?!..",
+    "hehe me stel ur stikér\nhehe.",
+    "Ay look over there (☉｡☉)!→\nWhile I kang this...",
+    "Roses are red violets are blue, kanging this sticker so my pacc looks cool",
+    "Imprisoning this sticker...",
+    "Mr.Steal Your Sticker is stealing this sticker... ",
 ]
 
 
-@register(outgoing=True, pattern="^.get")
+@register(outgoing=True, pattern="^.kang")
 async def kang(args):
     """ For .kang command, kangs stickers or creates new ones. """
     user = await bot.get_me()
@@ -71,7 +80,7 @@ async def kang(args):
     if photo:
         splat = args.text.split()
         if not emojibypass:
-            emoji = "😭"
+            emoji = "🤔"
         pack = 1
         if len(splat) == 3:
             pack = splat[2]  # User sent both
@@ -86,8 +95,8 @@ async def kang(args):
                 # pack
                 emoji = splat[1]
 
-        packname = f"{user.username}_{pack}"
-        packnick = f"{user.first_name}"
+        packname = f"a{user.id}_by_{user.username}_{pack}"
+        packnick = f"@{user.username}'s kang pack Vol.{pack}"
         cmd = '/newpack'
         file = io.BytesIO()
 
@@ -114,8 +123,8 @@ async def kang(args):
                 x = await conv.get_response()
                 while "120" in x.text:
                     pack += 1
-                    packname = f"{user.username}_{pack}"
-                    packnick = f"{user.first_name}"
+                    packname = f"a{user.id}_by_{user.username}_{pack}"
+                    packnick = f"@{user.username}'s kang pack Vol.{pack}"
                     await args.edit("`Switching to Pack " + str(pack) +
                                     " due to insufficient space`")
                     await conv.send_message(packname)
@@ -183,7 +192,7 @@ async def kang(args):
                 # Ensure user doesn't get spamming notifications
                 await bot.send_read_acknowledge(conv.chat_id)
         else:
-            await args.edit("؜؜؜")
+            await args.edit("`Brewing a new Pack...`")
             async with bot.conversation('Stickers') as conv:
                 await conv.send_message(cmd)
                 await conv.get_response()
@@ -227,7 +236,8 @@ async def kang(args):
                 # Ensure user doesn't get spamming notifications
                 await bot.send_read_acknowledge(conv.chat_id)
 
-        await args.edit(f"[Done!](t.me/addstickers/{packname})",
+        await args.edit(f"`Sticker kanged successfully!`\
+            \nPack can be found [here](t.me/addstickers/{packname})",
                         parse_mode='md')
 
 
@@ -301,13 +311,13 @@ async def get_pack_info(event):
 
 CMD_HELP.update({
     "stickers":
-    ".get\
+    ".kang\
 \nUsage: Reply .kang to a sticker or an image to kang it to your userbot pack.\
-\n\n.get [emoji('s)]\
+\n\n.kang [emoji('s)]\
 \nUsage: Works just like .kang but uses the emoji('s) you picked.\
-\n\n.get [number]\
+\n\n.kang [number]\
 \nUsage: Kang's the sticker/image to the specified pack but uses 🤔 as emoji.\
-\n\n.get [emoji('s)] [number]\
+\n\n.kang [emoji('s)] [number]\
 \nUsage: Kang's the sticker/image to the specified pack and uses the emoji('s) you picked.\
 \n\n.stkrinfo\
 \nUsage: Gets info about the sticker pack."
